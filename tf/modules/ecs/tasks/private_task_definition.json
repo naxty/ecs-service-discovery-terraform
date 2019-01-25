@@ -1,0 +1,24 @@
+[
+  {
+    "name": "privateimage",
+    "image": "${private_image}",
+    "portMappings": [
+      {
+        "containerPort": 8081,
+        "hostPort": 8081
+      }
+    ],
+    "memory": 4096,
+    "cpu": 1024,
+    "networkMode": "awsvpc",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "private"
+      }
+    },
+    "command": ["python", "/app/main.py"]
+  }
+]

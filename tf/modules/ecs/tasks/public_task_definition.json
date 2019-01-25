@@ -1,0 +1,30 @@
+[
+  {
+    "name": "publicimage",
+    "image": "${public_image}",
+    "portMappings": [
+      {
+        "containerPort": 8080,
+        "hostPort": 8080
+      }
+    ],
+    "memory": 4096,
+    "cpu": 1024,
+    "networkMode": "awsvpc",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "public"
+      }
+    },
+    "environment": [
+      {
+        "name": "PRIVATE_SERVICE",
+        "value": "example.private_ns"
+      }
+    ],
+    "command": ["python", "/app/main.py"]
+  }
+]
